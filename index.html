@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
     <script>
         function testCrash() {
             let txt = 'crash';
-            while(1){
+            while (1) {
                 txt = txt += 'it';
+            }
+        }
+
+        function testHumanaIssue(url) {
+            var win = window.open(url);
+            if (!win) {
+                spAlert("Please set Pop Up Blocker to allow pop-ups from this site, then try again.", "Pop-up blocked");
+            } else {
+                win.focus();
+                setTimeout(function () {
+                    if (!document.hidden) { // if still on the same window, close and re-open to focus
+                        win.close();
+                        window.open(url).focus();
+                    }
+                }, 500);
             }
         }
     </script>
 </head>
+
 <body>
-<a href="javascript:void(0)" onclick="testCrash()">Crash!</a>
+    <p><a href="javascript:void(0)" onclick="testCrash()">Crash!</a></p>
+    <p><a href="javascript:void(0)" onclick="testHumanaIssue('https:\/\/qa-tools-appsulate.herokuapp.com')">Test Humana Issue</a></p>
 </body>
+
 </html>
