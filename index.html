@@ -15,7 +15,7 @@
         function testHumanaIssue(url) {
             var win = window.open(url);
             if (!win) {
-                spAlert("Please set Pop Up Blocker to allow pop-ups from this site, then try again.", "Pop-up blocked");
+                alert("Please set Pop Up Blocker to allow pop-ups from this site, then try again.");
             } else {
                 win.focus();
                 setTimeout(function () {
